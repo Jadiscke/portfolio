@@ -5,19 +5,20 @@ interface Project {
   title: string;
   description: string;
   technologies: string[];
-  imageUrl: string;
+  imageUrl?: string;
   liveUrl?: string;
   githubUrl?: string;
 }
 
 export default function Home() {
+  console.log('test');
   const projects: Project[] = [
     {
       title: 'Notes App',
       description:
         'Description of your first project. Highlight the key features and technologies used.',
       technologies: ['React', 'TypeScript', 'Node.js', 'Supabase', 'SQL', 'Next.js', 'TailwindCSS'],
-      imageUrl: '/project1.jpg',
+      imageUrl: '/portfolio/notes-app.png',
       liveUrl: 'https://project1.com',
       githubUrl: 'https://github.com/jadiscke/notes-app',
     },
@@ -25,7 +26,6 @@ export default function Home() {
       title: 'Project 2',
       description: 'Description of your second project. Showcase your best work and achievements.',
       technologies: ['Next.js', 'TailwindCSS', 'MongoDB'],
-      imageUrl: '/project2.jpg',
       githubUrl: 'https://github.com/yourusername/project2',
     },
   ];
@@ -114,6 +114,15 @@ export default function Home() {
             {projects.map((project, index) => (
               <div key={index} className="bg-primary-200 rounded-lg p-6 flex flex-col gap-4 h-full">
                 <div className="aspect-video bg-primary-300 rounded-lg overflow-hidden">
+                  {project?.imageUrl && (
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      width={1000}
+                      height={1000}
+                      objectFit="contain"
+                    />
+                  )}
                   {/* Add Image component here once you have images */}
                 </div>
                 <h2 className="text-2xl font-bold">{project.title}</h2>
